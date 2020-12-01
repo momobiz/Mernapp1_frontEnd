@@ -1,0 +1,21 @@
+
+.menu Button{
+    height: 40px;
+    margin-right:15px
+}
+.menu{
+    align-items: center;
+    margin-left:15%
+    
+}
+.dropdown-item{
+    color:#5eaa14;
+
+}
+.dropdown-item.active{
+    background-color: #5eaa14;
+}
+.dropdown-item:active {
+
+	background-color: #f60002;
+}
