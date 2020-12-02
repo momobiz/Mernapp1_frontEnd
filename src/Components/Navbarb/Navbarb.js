@@ -59,7 +59,7 @@ const Navbarb = () => {
 
                     <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        Articles de décorrations
+                        Articles de décorations
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
