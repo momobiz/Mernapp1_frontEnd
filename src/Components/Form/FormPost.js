@@ -1,15 +1,21 @@
 import React, {useState} from 'react';
 import {Button, Modal, Form} from "react-bootstrap"; 
 import "./formPost.css"; 
+import FileBase from 'react-file-base64';
+import {useDispatch} from 'react-redux'
+import { createPost} from "../../Redux/PostAction";
 
 const FormPost = () => {
+    const dispatch=useDispatch();
 
     const [postData, setPostData]=useState({
-        category:'',
         title:'',
+        category:'',
+        price:'',
+        
         photo:'',
         description:'',
-        phone:0,
+        phone:'',
         city:''
 
 
@@ -25,21 +31,19 @@ const FormPost = () => {
     const articlesDecorations=["Pots et Bacs","balustrades et Fontaine", "Eclairage", "Accessoires Divers"];
 
     const categories=[[], plantes, outillages, entretiensJardin, mobiliersJardin, articlesDecorations];
-
-    const charger=()=>{
-        const i=document.getElementById("category").selectedIndex;
-        const liste2=document.getElementById("liste2");
-
-       
-
-       if(liste2.length>0){
+    var liste2=document.getElementById("liste2");
+    const viderListe=()=>{
+        if(liste2.length>0){
             for(let k=liste2.length-1; k>=0;k--){
                 liste2.remove(k);
             }
         }
-        console.log(i);
 
-        for(let j=0; j<categories[i].length; j++){
+    }
+    const charger=()=>{
+        const i=document.getElementById("category").selectedIndex;
+            viderListe(); 
+            for(let j=0; j<categories[i].length; j++){
             let e=document.createElement('option');
             e.text=categories[i][j];
             e.value=categories[i][j];
@@ -47,16 +51,37 @@ const FormPost = () => {
         }
     }
 
-    const handleSubmit=()=>{
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+
+        dispatch(createPost(postData));
+        console.log(postData);
+        
         
     }
+    const reset=()=>{
+        setPostData({
+            category:'',
+            title:'',
+            photo:'',
+            description:'',
+            price:'',
+            phone:'',
+           
+            city:''
+        });
+        viderListe();
+        
+         
+    }
+    
     
 
 
     return (
         <div>
-           postData={postData.title}
-          
+           
+        
             <Modal.Dialog >
                     <Modal.Header closeButton>
                         <Modal.Title style={{color:"#28a745"}}>Créer votre annonce </Modal.Title>
@@ -72,7 +97,13 @@ const FormPost = () => {
                                 <Form.Control as="textarea" placeholder="Description"  value={postData.description} onChange={(e)=>setPostData({...postData, description:e.target.value})}/>  
                             </Form.Group>
 
-                            <Form.Group controlId="exampleForm.ControlSelect1">
+                            <Form.Group>
+                                    <Form.Row>
+                                       <Form.Control size="lg" type="text" placeholder="prix" value={postData.price} onChange={(e)=>setPostData({...postData, price:Number(e.target.value)})} />
+                                    </Form.Row>
+                           </Form.Group>
+
+                            <Form.Group >
                                 <Form.Control as="select" id="category"  onChange={()=>charger()}>
                                 <option> Categories </option>
                                 <option>Plantes</option>
@@ -83,14 +114,14 @@ const FormPost = () => {
                                 </Form.Control>
                             </Form.Group>
 
-                            <Form.Group controlId="exampleForm.ControlSelect1">
+                            <Form.Group>
                                 <Form.Control as="select" id="liste2" value={postData.category} onChange={(e)=>setPostData({...postData, category:e.target.value})}>
                                 </Form.Control>
                            </Form.Group>
 
                            <Form.Group>
                                     <Form.Row>
-                                       <Form.Control size="lg" type="text" placeholder="Téléphone" value={postData.phone} onChange={(e)=>setPostData({...postData, phone:e.target.value})} />
+                                       <Form.Control size="lg" type="text" placeholder="Téléphone" value={postData.phone} onChange={(e)=>setPostData({...postData, phone:Number(e.target.value)})} />
                                     </Form.Row>
                            </Form.Group>
 
@@ -105,7 +136,14 @@ const FormPost = () => {
 
 
                            <Form.Group>
-                                <Form.File id="postPhoto" label="Ajouter une photo" value={postData.photo} onChange={(e)=>setPostData({...postData, photo:e.target.value})} />
+                               Ajouter une Photo <br/><br/>
+                               <FileBase 
+                                    type="file"
+                                    multiple={false}
+                                    onDone={({base64})=>setPostData({...postData, photo:base64})}
+                             
+                               />
+                                
                            </Form.Group>
 
 
@@ -115,7 +153,7 @@ const FormPost = () => {
                             <Button variant="success" type="submit" style={{marginRight:"10px"}}>
                                 Submit
                             </Button>
-                            <Button variant="danger" type="reset">
+                            <Button variant="danger" type="reset" onClick={()=>reset({})}>
                                 Reset
                             </Button>
                     </Form>
