@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Modal, Form} from "react-bootstrap"; 
 import "./formPost.css"; 
-import FileBase from 'react-file-base64';
+
 import {useDispatch} from 'react-redux'
 import { createPost} from "../../Redux/PostAction";
 
@@ -20,6 +20,8 @@ const FormPost = () => {
 
 
     })
+    
+   
 
     
 
@@ -32,14 +34,14 @@ const FormPost = () => {
 
     const categories=[[], plantes, outillages, entretiensJardin, mobiliersJardin, articlesDecorations];
     var liste2=document.getElementById("liste2");
-    const viderListe=()=>{
+      const viderListe=()=>{
         if(liste2.length>0){
-            for(let k=liste2.length-1; k>=0;k--){
+             for(let k=liste2.length-1; k>=0;k--){
                 liste2.remove(k);
-            }
+             }
         }
 
-    }
+     }
     const charger=()=>{
         const i=document.getElementById("category").selectedIndex;
             viderListe(); 
@@ -51,14 +53,20 @@ const FormPost = () => {
         }
     }
 
-    const handleSubmit=(e)=>{
-        e.preventDefault();
+    /*************************************************** */
 
-        dispatch(createPost(postData));
-        console.log(postData);
+    
+
+    const handleSubmit=(e)=>{
         
+        e.preventDefault();
+        const formData=new FormData();
+        Object.keys(postData).forEach(key=>formData.append(key, postData[key]));
+        dispatch(createPost(formData));
+        reset();
+       
         
-    }
+        }
     const reset=()=>{
         setPostData({
             category:'',
@@ -80,8 +88,8 @@ const FormPost = () => {
 
     return (
         <div>
+            
            
-        
             <Modal.Dialog >
                     <Modal.Header closeButton>
                         <Modal.Title style={{color:"#28a745"}}>Créer votre annonce </Modal.Title>
@@ -90,16 +98,19 @@ const FormPost = () => {
                     <Modal.Body>
                     <Form onSubmit={handleSubmit}>
                             <Form.Group controlId="formBasicEmail">
-                                 <Form.Control size="lg" type="text" placeholder="Titre" value={postData.title} onChange={(e)=>setPostData({...postData, title:e.target.value})} />
+                                 <Form.Control size="lg" type="text" placeholder="Titre" name="title"
+                                 value={postData.title} onChange={(e)=>setPostData({...postData, title:e.target.value})} />
                              </Form.Group>
 
                             <Form.Group controlId="exampleForm.ControlTextarea1">
-                                <Form.Control as="textarea" placeholder="Description"  value={postData.description} onChange={(e)=>setPostData({...postData, description:e.target.value})}/>  
+                                <Form.Control as="textarea" placeholder="Description" name="description"
+                                 value={postData.description} onChange={(e)=>setPostData({...postData, description:e.target.value})}/>  
                             </Form.Group>
 
                             <Form.Group>
                                     <Form.Row>
-                                       <Form.Control size="lg" type="text" placeholder="prix" value={postData.price} onChange={(e)=>setPostData({...postData, price:Number(e.target.value)})} />
+                                       <Form.Control size="lg" type="text" placeholder="prix" name="price"
+                                       value={postData.price} onChange={(e)=>setPostData({...postData, price:Number(e.target.value)})} />
                                     </Form.Row>
                            </Form.Group>
 
@@ -115,18 +126,22 @@ const FormPost = () => {
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Control as="select" id="liste2" value={postData.category} onChange={(e)=>setPostData({...postData, category:e.target.value})}>
+                                <Form.Control as="select" id="liste2" value={postData.category} name="category"
+                                 onChange={(e)=>setPostData({...postData, category:e.target.value})}>
+                            
                                 </Form.Control>
                            </Form.Group>
 
                            <Form.Group>
                                     <Form.Row>
-                                       <Form.Control size="lg" type="text" placeholder="Téléphone" value={postData.phone} onChange={(e)=>setPostData({...postData, phone:Number(e.target.value)})} />
+                                       <Form.Control size="lg" type="text" placeholder="Téléphone" name="phone"
+                                       value={postData.phone} onChange={(e)=>setPostData({...postData, phone:Number(e.target.value)})} />
                                     </Form.Row>
                            </Form.Group>
 
                            <Form.Group>
-                                <Form.Control as="select" size="lg" value={postData.city} onChange={(e)=>setPostData({...postData, city:e.target.value})}>
+                                <Form.Control as="select" size="lg" value={postData.city} name="city"
+                                onChange={(e)=>setPostData({...postData, city:e.target.value})}>
                                     <option>ville</option>
                                     <option value="bizerte"> Bizerte</option>
                                     <option value="tunis">Tunis</option>
@@ -136,13 +151,11 @@ const FormPost = () => {
 
 
                            <Form.Group>
-                               Ajouter une Photo <br/><br/>
-                               <FileBase 
-                                    type="file"
-                                    multiple={false}
-                                    onDone={({base64})=>setPostData({...postData, photo:base64})}
-                             
-                               />
+
+                              {/* <Form.File id="exampleFormControlFile1" label=" Ajouter une photo" value={postData.photo} 
+                               onChange={(e)=>setPostData({...postData, photo:e.target.value})}
+    />*/}
+    <input type="file" name="photo" onChange={(e)=>setPostData({...postData, photo:e.target.files[0]})}/>
                                 
                            </Form.Group>
 

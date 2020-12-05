@@ -14,7 +14,10 @@ const Posts = () => {
 
         <div>
             Affichages des annonces 
-            <Post/>
+           { posts.map((post, key)=><Post post={post} key={key}/>)
+
+           }
+                
             
         </div>
     );
