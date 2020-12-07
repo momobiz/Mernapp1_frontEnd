@@ -1,22 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Post from '../Post/Post';
 import {useSelector} from 'react-redux';
+import "./posts.css";
 
 
 
-const Posts = () => {
-    const posts=useSelector((state)=>state.postReducer); 
-    
-    console.log(posts);
+const Posts = ({motsCle, match}) => {
+    const postsList=useSelector((state)=>state.postReducer);
+ match? console.log(match.params.categorie): console.log('non')
 
 
     return (
 
-        <div>
-            Affichages des annonces 
-           { posts.map((post, key)=><Post post={post} key={key}/>)
+        <div className="postsContainer">
+           
+           { postsList.filter(post=>(post.title.toLowerCase().includes(motsCle.toLowerCase()))).map((post, key)=><Post post={post} key={key}/>)
 
-           }
+
+
+    }
                 
             
         </div>

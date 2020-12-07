@@ -26,11 +26,11 @@ const FormPost = () => {
     
 
 
-    const plantes=["Arbres", "Arbustes", "Plantes d'intérieures"];
-    const outillages=["Outils de Jardinage", "Outils de Bricolage"];
-    const entretiensJardin=["Engrais et Persticide", "Services"];
-    const mobiliersJardin=["Salons de Jardin", "Meubles Divers"];
-    const articlesDecorations=["Pots et Bacs","balustrades et Fontaine", "Eclairage", "Accessoires Divers"];
+    const plantes=["---","Arbres", "Arbustes", "Plantes d'intérieur"];
+    const outillages=["---", "Outils de Jardinage", "Outils de Bricolage"];
+    const entretiensJardin=["---", "Engrais et Persticide", "Services"];
+    const mobiliersJardin=["---", "Salons de Jardin", "Meubles Divers"];
+    const articlesDecorations=["---", "Pots et Bacs","balustrades et Fontaine", "Eclairage", "Accessoires Divers"];
 
     const categories=[[], plantes, outillages, entretiensJardin, mobiliersJardin, articlesDecorations];
     var liste2=document.getElementById("liste2");
@@ -127,7 +127,7 @@ const FormPost = () => {
 
                             <Form.Group>
                                 <Form.Control as="select" id="liste2" value={postData.category} name="category"
-                                 onChange={(e)=>setPostData({...postData, category:e.target.value})}>
+                                 onChange={(e)=>setPostData({...postData, category:(e.target.value).toLowerCase().split(' ').join('_')})}>
                             
                                 </Form.Control>
                            </Form.Group>

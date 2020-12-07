@@ -1,14 +1,14 @@
 import React from 'react';
-
 import {Dropdown, Nav, Navbar, Button} from "react-bootstrap";
 import "./navbarb.css"; 
+import {Link} from "react-router-dom";
 
-const Navbarb = () => {
+const Navbarb = ({setMotsCle}) => {
     return (
         <Navbar  bg="link" variant="link" className="navbarb" >
                  
           <Nav className=" menu">
-                    <Button variant="success">Accueil</Button>
+                   <Link to="/"> <Button variant="success" onClick={()=>setMotsCle('')}>Accueil</Button></Link>
             
                     <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -16,9 +16,11 @@ const Navbarb = () => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Arbres</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">Arbustes</Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">Plantes d'intérieures </Dropdown.Item>
+                       <Dropdown.Item >  <Link to="/arbres"> Arbres </Link></Dropdown.Item>
+
+
+                      <Dropdown.Item>   <Link to="/arbustes">Arbustes</Link></Dropdown.Item>
+                        <Dropdown.Item><Link to="/plantes_d_intérieur"> Plantes d'intérieur</Link> </Dropdown.Item>
                     </Dropdown.Menu>
                     </Dropdown>
 
@@ -28,8 +30,8 @@ const Navbarb = () => {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">Outils de jardinage </Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Outils de bricolages diverses</Dropdown.Item>
+                            <Dropdown.Item><Link to="/outils_de_jardinage"> Outils de jardinage </Link></Dropdown.Item>
+                            <Dropdown.Item><Link to="/outils_de_bricolages_diverses"> Outils de bricolages diverses </Link></Dropdown.Item>
                           
                         </Dropdown.Menu>
                     </Dropdown>
@@ -39,8 +41,8 @@ const Navbarb = () => {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">Engrais et Persticides </Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Services</Dropdown.Item>
+                            <Dropdown.Item><Link to="/engrais_et_pesticides"> Engrais et Persticides </Link></Dropdown.Item>
+                            <Dropdown.Item><Link to="/services">Services </Link> </Dropdown.Item>
                           
                         </Dropdown.Menu>
                     </Dropdown>
@@ -51,8 +53,8 @@ const Navbarb = () => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Salons de jardin </Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">meubles divers </Dropdown.Item>
+                        <Dropdown.Item> <Link to="salon_de_jardin">Salons de jardin</Link> </Dropdown.Item>
+                        <Dropdown.Item> <Link to="meubles_divers">meubles divers </Link> </Dropdown.Item>
                       
                     </Dropdown.Menu>
                     </Dropdown>
@@ -63,10 +65,10 @@ const Navbarb = () => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Pots et bacs</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">Balustrades, Fontaines et autres </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3"> Eclairages </Dropdown.Item>
-                        <Dropdown.Item href="#/action-4"> Accessoires divers </Dropdown.Item>
+                        <Dropdown.Item><Link to="/pots_et_bacs"> Pots et bacs</Link></Dropdown.Item>
+                        <Dropdown.Item><Link to="/balustrades_fontaines_et_autres"> Balustrades, Fontaines et autres </Link></Dropdown.Item>
+                        <Dropdown.Item><Link to="/eclairages">  Eclairages </Link></Dropdown.Item>
+                        <Dropdown.Item><Link to="/accessoires_divers">  Accessoires divers</Link> </Dropdown.Item>
                     </Dropdown.Menu>
                     </Dropdown>
 
