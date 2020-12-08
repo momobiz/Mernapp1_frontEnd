@@ -15,18 +15,4 @@ export const createPost=(newPost)=>async(dispatch)=>{
     .catch(error=>console.log(error))
 
 }
-/*export const insertPost=(post)=>async(dispatch)=>{
 
-    try{
-        const {data}=await createPost(post);
-        dispatch({
-            type:" CREATE_POST",
-            payload:data
-        })
-
-
-
-    }catch(error){
-        console.log(error.message);
-    }
-}*/

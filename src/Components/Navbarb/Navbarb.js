@@ -31,7 +31,7 @@ const Navbarb = ({setMotsCle}) => {
 
                         <Dropdown.Menu>
                             <Dropdown.Item><Link to="/outils_de_jardinage"> Outils de jardinage </Link></Dropdown.Item>
-                            <Dropdown.Item><Link to="/outils_de_bricolages_diverses"> Outils de bricolages diverses </Link></Dropdown.Item>
+                            <Dropdown.Item><Link to="/outils_de_bricolages"> Outils de bricolages diverses </Link></Dropdown.Item>
                           
                         </Dropdown.Menu>
                     </Dropdown>
@@ -53,8 +53,8 @@ const Navbarb = ({setMotsCle}) => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item> <Link to="salon_de_jardin">Salons de jardin</Link> </Dropdown.Item>
-                        <Dropdown.Item> <Link to="meubles_divers">meubles divers </Link> </Dropdown.Item>
+                        <Dropdown.Item> <Link to="salons_de_jardin">Salons de jardin</Link> </Dropdown.Item>
+                        <Dropdown.Item> <Link to="meubles_divers">Meubles divers </Link> </Dropdown.Item>
                       
                     </Dropdown.Menu>
                     </Dropdown>
@@ -66,9 +66,9 @@ const Navbarb = ({setMotsCle}) => {
 
                     <Dropdown.Menu>
                         <Dropdown.Item><Link to="/pots_et_bacs"> Pots et bacs</Link></Dropdown.Item>
-                        <Dropdown.Item><Link to="/balustrades_fontaines_et_autres"> Balustrades, Fontaines et autres </Link></Dropdown.Item>
-                        <Dropdown.Item><Link to="/eclairages">  Eclairages </Link></Dropdown.Item>
-                        <Dropdown.Item><Link to="/accessoires_divers">  Accessoires divers</Link> </Dropdown.Item>
+                        <Dropdown.Item><Link to="/balustrades_fontaines_et_autres"> Balustrades Fontaines et autres </Link></Dropdown.Item>
+                        <Dropdown.Item><Link to="/eclairages">Eclairages</Link></Dropdown.Item>
+                        <Dropdown.Item><Link to="/accessoires_divers">Accessoires divers</Link> </Dropdown.Item>
                     </Dropdown.Menu>
                     </Dropdown>
 

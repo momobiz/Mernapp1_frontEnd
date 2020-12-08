@@ -26,11 +26,11 @@ const FormPost = () => {
     
 
 
-    const plantes=["---","Arbres", "Arbustes", "Plantes d'intérieur"];
-    const outillages=["---", "Outils de Jardinage", "Outils de Bricolage"];
-    const entretiensJardin=["---", "Engrais et Persticide", "Services"];
-    const mobiliersJardin=["---", "Salons de Jardin", "Meubles Divers"];
-    const articlesDecorations=["---", "Pots et Bacs","balustrades et Fontaine", "Eclairage", "Accessoires Divers"];
+    const plantes=["Arbres", "Arbustes", "Plantes d intérieur"];
+    const outillages=[ "Outils de Jardinage", "Outils de Bricolage"];
+    const entretiensJardin=["Engrais et Persticide", "Services"];
+    const mobiliersJardin=["Salons de Jardin", "Meubles Divers"];
+    const articlesDecorations=[ "Pots et Bacs","Balustrades Fontaines et Autres", "Eclairage", "Accessoires divers"];
 
     const categories=[[], plantes, outillages, entretiensJardin, mobiliersJardin, articlesDecorations];
     var liste2=document.getElementById("liste2");
@@ -44,11 +44,12 @@ const FormPost = () => {
      }
     const charger=()=>{
         const i=document.getElementById("category").selectedIndex;
+        console.log('selected index=>', i);
             viderListe(); 
             for(let j=0; j<categories[i].length; j++){
             let e=document.createElement('option');
             e.text=categories[i][j];
-            e.value=categories[i][j];
+            e.value=(categories[i][j]).toLowerCase().split(' ').join('_');
             liste2.add(e,null); 
         }
     }
@@ -127,7 +128,7 @@ const FormPost = () => {
 
                             <Form.Group>
                                 <Form.Control as="select" id="liste2" value={postData.category} name="category"
-                                 onChange={(e)=>setPostData({...postData, category:(e.target.value).toLowerCase().split(' ').join('_')})}>
+                                 onChange={(e)=>setPostData({...postData, category:(e.target.value) })}>
                             
                                 </Form.Control>
                            </Form.Group>

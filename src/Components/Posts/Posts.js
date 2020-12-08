@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Post from '../Post/Post';
 import {useSelector} from 'react-redux';
 import "./posts.css";
@@ -7,18 +7,29 @@ import "./posts.css";
 
 const Posts = ({motsCle, match}) => {
     const postsList=useSelector((state)=>state.postReducer);
- match? console.log(match.params.categorie): console.log('non')
+   
+    console.log(postsList);
+
+     match? console.log(match.params.categorie): console.log('non');
 
 
     return (
 
         <div className="postsContainer">
            
-           { postsList.filter(post=>(post.title.toLowerCase().includes(motsCle.toLowerCase()))).map((post, key)=><Post post={post} key={key}/>)
+           { !match? (postsList.filter(post=>(post.title.toLowerCase().includes(motsCle.toLowerCase()) ))
+           .map((post, key)=><Post post={post} key={key}/>))
+           :
+
+           ( postsList.filter(post=>(post.category===match.params.categorie)).map((post, key)=><Post post={post}/>))
+
+           
 
 
 
-    }
+            }
+           
+            
                 
             
         </div>
