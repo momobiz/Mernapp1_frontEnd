@@ -15,9 +15,6 @@ import PostDecription from './Components/PostDescription/PostDecription';
 
 
 
-
-
-
 function App() {
 
   const dispatch=useDispatch();
@@ -41,6 +38,7 @@ function App() {
  
      
       <Header setMotsCle={setMotsCle}/>
+     { /*<FormUser/>*/}
      
 
      
@@ -49,9 +47,10 @@ function App() {
       <Route exact path="/" render={()=><Posts motsCle={motsCle} />}/>
      <Route exact path="/:categorie" render={({match})=><Posts  motsCle={motsCle} match={match}/>}/>
       <Route path="/postDescription/:id" component={ PostDecription} />
-     </Switch>
+      <Route exact path="/user/inscription" component={FormUser}/>
+      </Switch>
 
-    <FormPost/>
+   {/* <FormPost/>*/}
     <Footer/>
 
    

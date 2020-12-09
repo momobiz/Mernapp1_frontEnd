@@ -16,7 +16,7 @@ function Header({setMotsCle}) {
     <header className="header">
       <div className="row">
          <div className="header_button">
-             <Button className="inscription" variant="success">S'inscrire </Button>
+            <Link to="/user/inscription"> <Button className="inscription" variant="success">S'inscrire </Button> </Link>
              <Button variant="success">Connexion 
                 <i className="fa fa-user" aria-hidden="true" style={{marginLeft:"4px"}}></i>
             </Button>
