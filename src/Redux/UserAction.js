@@ -1,15 +1,10 @@
 import axios from 'axios'; 
-import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT} from './ActionTypes';
+import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, 
+    LOGIN_FAIL, LOGOUT, GET_PROFILE, PROFILE_ERROR} from './ActionTypes';
 import setAuthToken from '../Utils/setAuthToken';
 
 
 
-export const logout=()=>(dispatch)=>{
-    dispatch({
-        type:LOGOUT
-    })
-
-}
 
 /******************************************************************** */
 export const loginUser=(user)=>async(dispatch)=>{
@@ -99,3 +94,30 @@ export const  getUsers=()=>(dispatch)=>{
  }
  /********************************************************** */
 
+
+ export const logout=(x)=>async(dispatch)=>{
+    
+    await dispatch({
+        type:'LOGOUT'
+    })
+  console.log(x);
+  }
+  /****************************************** */
+
+  export const getCurrentProfile=()=>async(dispatch)=>{
+      try {
+        const res= await axios.get('http://localhost:5000/users/user');
+        dispatch({
+            type:GET_PROFILE,
+            payload:res.data
+        })
+          
+      } catch (error) {
+          dispatch({
+              type:PROFILE_ERROR,
+              payload: {msg:error.response.statusText, status:error.response.status}
+          })
+          
+      }
+
+  }

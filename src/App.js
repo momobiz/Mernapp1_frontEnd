@@ -14,8 +14,16 @@ import {Route, Switch} from 'react-router-dom';
 import PostDecription from './Components/PostDescription/PostDecription';
 import setAuthToken from './Utils/setAuthToken'; 
 import FormLogin from './Components/Form/FormLogin';
+import UserDashboard from './Components/Dashboard/UserDashboard';
+import PrivateRoute from './Components/Routing/PrivateRoute';
 
-if(localStorage.token) setAuthToken(localStorage.token); 
+
+
+
+if(localStorage.token) {setAuthToken(localStorage.token);
+                        console.log('token dans le localStorage')
+
+}; 
 
 
 function App() {
@@ -24,26 +32,26 @@ function App() {
   useEffect(()=>{
     dispatch(getPosts());
     dispatch(getUsers());
-    dispatch(loadUser()); 
-    
+    dispatch(loadUser); 
+
   
     
-  },[dispatch])
+  },[])
  
 
 
   const [motsCle, setMotsCle]=useState(''); 
   
 
-  const users=useSelector(state=>state.userReducer);
- console.log('users=>', users);
+  //const users=useSelector(state=>state.userReducer);
+ //console.log('users=>', users);
 
  
 
   return (
 
     
-    <div className="App">
+    <div className="App" >
  
      
       <Header setMotsCle={setMotsCle}/>
@@ -58,6 +66,23 @@ function App() {
       <Route path="/postDescription/:id" component={ PostDecription} />
       <Route exact path="/user/inscription" component={FormUser}/>
       <Route exact path="/user/connexion" component={FormLogin}/>
+      {<Route exact path="/user/dashboard" component={UserDashboard}/>}
+      {/*<PrivateRoute exact path="/user/dashboard" component={UserDashboard}/>*/}
+     
+  
+   
+
+
+
+     {/* <Route exact path="/user/inscription" render={()=><div>
+                                                        <FormUser/>
+                                                      <Posts motsCle={motsCle} />
+                                                       </div>}/>
+      <Route exact path="/user/connexion" render={()=><div>
+                                                        <FormLogin/>
+                                                      <Posts motsCle={motsCle} />
+      </div>}/>*/}
+    
   </Switch>
 
     {/*<FormPost/>*/}

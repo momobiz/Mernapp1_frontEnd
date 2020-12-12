@@ -70,7 +70,7 @@ const FormUser = () => {
     return (
         <div>
          
-             <Modal.Dialog  className="formUser" style={{position:"absolute", top:"40px", right:"175px" }}>
+             <Modal.Dialog  className="formUser" style={{position:"absolute", top:"40px", right:"175px", zIndex:"3" }}>
 
                     <Modal.Title style={{color:"#28a745", marginLeft:"20px"}}>Créer votre Compte </Modal.Title>
                     {/*etat?(<Alert  variant="danger"> This email is already used </Alert>):(<></>)*/}

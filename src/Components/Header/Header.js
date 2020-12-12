@@ -15,11 +15,11 @@ function Header({setMotsCle}) {
   const [valeurMotcle, setValeurMotcle]=useState('');
   const authState=useSelector(state=>state.authReducer); 
   const {isAuthenticated, loading}=authState; 
-  const dispatch=useDispatch(); 
+  const dispatch=useDispatch();
 
- const authLink=<Button variant="danger" onClick={dispatch(logout)}>Déconnexion
+ const authLink=<Button variant="danger" onClick={()=>dispatch(logout("au revoir"))}>Déconnexion
                 <i className="fa fa-sign-out" aria-hidden="true" style={{marginLeft:"4px"}}></i>
-                </Button>; 
+                </Button>;
 
 const guestLink=<div>
                     <Link to="/user/inscription"><Button className="inscription" variant="success">S'inscrire</Button></Link>
@@ -35,6 +35,8 @@ const guestLink=<div>
          <div className="header_button">
           
       {!loading && <Fragment> {isAuthenticated? authLink:guestLink} </Fragment>}   
+
+      
      
          {/*<Button variant="danger" onClick={dispatch(logout)}>Déconnexion
                 <i className="fa fa-sign-out" aria-hidden="true" style={{marginLeft:"4px"}}></i>
