@@ -1,25 +1,52 @@
-
+import React, {Fragment} from 'react';
 import Navbarb from '../Navbarb/Navbarb';
 import {Button, InputGroup, FormControl} from "react-bootstrap";
 import logo_bricodeco from "../../Assets/logo_bricodeco2.png";
 import "./header.css";
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux'; 
+import {logout} from '../../Redux/UserAction';
 
 
 
 function Header({setMotsCle}) {
 
   const [valeurMotcle, setValeurMotcle]=useState('');
+  const authState=useSelector(state=>state.authReducer); 
+  const {isAuthenticated, loading}=authState; 
+  const dispatch=useDispatch(); 
+
+ const authLink=<Button variant="danger" onClick={dispatch(logout)}>Déconnexion
+                <i className="fa fa-sign-out" aria-hidden="true" style={{marginLeft:"4px"}}></i>
+                </Button>; 
+
+const guestLink=<div>
+                    <Link to="/user/inscription"><Button className="inscription" variant="success">S'inscrire</Button></Link>
+                    <Link to='/user/connexion'> <Button variant="success">Connexion 
+                    <i className="fa fa-user" aria-hidden="true" style={{marginLeft:"4px"}}></i>
+                    </Button> </Link>
+                </div>;
+
 
   return (
     <header className="header">
       <div className="row">
          <div className="header_button">
-            <Link to="/user/inscription"> <Button className="inscription" variant="success">S'inscrire </Button> </Link>
-             <Button variant="success">Connexion 
-                <i className="fa fa-user" aria-hidden="true" style={{marginLeft:"4px"}}></i>
+          
+      {!loading && <Fragment> {isAuthenticated? authLink:guestLink} </Fragment>}   
+     
+         {/*<Button variant="danger" onClick={dispatch(logout)}>Déconnexion
+                <i className="fa fa-sign-out" aria-hidden="true" style={{marginLeft:"4px"}}></i>
             </Button>
+
+
+            <Link to="/user/inscription"> <Button className="inscription" variant="success">S'inscrire </Button> </Link>
+            
+            <Link to='/user/connexion'> <Button variant="success">Connexion 
+                <i className="fa fa-user" aria-hidden="true" style={{marginLeft:"4px"}}></i>
+  </Button> </Link>*/}
+
         </div>
        </div>
        <div className="row">

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 export const  getPosts=()=>(dispatch)=>{
- axios.get('http://localhost:5000/posts/showposts')
+ axios.get('/posts/showposts')
  .then(res=>dispatch({ type:"FETCH_ALL_POSTS", payload:res.data}))
  .catch(error=>console.log(error))
 
