@@ -23,10 +23,12 @@ const FormLogin = () => {
         })
     }
     const handleSubmit=(e)=>{
-        e.preventDefault();
+       e.preventDefault();
         dispatch(loginUser(userData)); 
+       
         
         reset(); 
+     
 
     }
 

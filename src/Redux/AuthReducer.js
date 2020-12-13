@@ -8,28 +8,34 @@ const initialState={
     
    user:null
 }
+
 const authReducer=(state=initialState, action)=>{
    const  {type, payload}=action;
  
    switch(type){
 
       case USER_LOADED:
+        
+       
           return {
               ...state,
               isAuthenticated:true,
               loading:false,
-              user:payload
+              user:payload,
+
+             
           }
 
        case REGISTER_SUCCESS:
            case LOGIN_SUCCESS:
-           
+          
            return {
                ...state,
               
                token:localStorage.getItem('token'),
                isAuthenticated:true,
-               loading:false
+               loading:false,
+ 
 
            }
         case REGISTER_FAIL:
@@ -42,10 +48,9 @@ const authReducer=(state=initialState, action)=>{
                token:null,
                isAuthenticated:false,
                loading:false,
+               user:null
              
-               
-
-            }
+                }
            default:
                return state;
                   

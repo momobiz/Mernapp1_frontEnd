@@ -1,44 +1,45 @@
-import React,{useState} from 'react';
-import {Card, ListGroup} from 'react-bootstrap';
-import {useSelector} from 'react-redux';
+import React,{useState, useEffect} from 'react';
+import {Card, ListGroup, Button} from 'react-bootstrap';
+import {useSelector, useDispatch} from 'react-redux';
+
+import {Link} from 'react-router-dom';
+
 
 
 import './userInfo.css'; 
 
-const UserInfo = () => {
-  
+const UserInfo = ({userInfo}) => {
 
-    const posts=useSelector(state=>state.postReducer); 
-    const infoUser=useSelector(state=>state.authReducer);
 
-   
-    
-    
-    //const {_id, userName, phone, city, email, avatar, professionnal}=infoUser.user;
+ const {_id, userName, phone, city, email, avatar, professionnal}=userInfo.profile;
    
 
 
     return (
         <div>
-       <Card style={{ width: '50rem' }} className="userDescription">
+            
+          
+      <Card style={{ width: '40rem', marginLeft:"20px" }} className="userDescription">
 
+            <Card.Title className="postHeadDesc">
+            <Card.Img variant="top" src={avatar} className="imageDescription"/>
+            <ListGroup variant="flush" className="listUserDescription">
+            <ListGroup.Item> <span className="userTitle"> UserName : </span> {userName} </ListGroup.Item>
+            <ListGroup.Item> <span className="userTitle"> Email : </span>{email}  </ListGroup.Item>
+            <ListGroup.Item> <span className="userTitle"> Phone : </span> {phone} </ListGroup.Item>
+            <ListGroup.Item> <span className="userTitle"> City : </span> {city}  </ListGroup.Item>
+            <ListGroup.Item> <span className="userTitle"> Professionnel : </span> {professionnal?'oui':'non'} </ListGroup.Item>
+            <ListGroup.Item> <span className="userTitle"> Nombre d'annonces : </span>  </ListGroup.Item>
+            </ListGroup>
+            </Card.Title>
+            <Card.Body>
+               
+            </Card.Body>
 
-    
-<Card.Title className="postHeadDesc">
-<Card.Img variant="top" src="#" className="imageDescription"/>
-<ListGroup variant="flush" className="listUserDescription">
-   <ListGroup.Item> <span className="userTitle"> UserName : </span> {/*userName*/} </ListGroup.Item>
-   <ListGroup.Item> <span className="userTitle"> Email : </span>{/*email*/}  </ListGroup.Item>
-   <ListGroup.Item> <span className="userTitle"> Phone : </span> {/*phone*/} </ListGroup.Item>
-   <ListGroup.Item> <span className="userTitle"> City : </span> {/*city*/}  </ListGroup.Item>
-   <ListGroup.Item> <span className="userTitle"> Professionnel : </span> {/*professionnal?'oui':'non'*/} </ListGroup.Item>
-   <ListGroup.Item> <span className="userTitle"> Nombre d'annonces : </span>  </ListGroup.Item>
-</ListGroup>
-</Card.Title>
-<Card.Body>
-
-</Card.Body>
+           
 </Card>
+            
+
             
         </div>
     );

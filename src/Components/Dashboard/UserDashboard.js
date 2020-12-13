@@ -1,27 +1,38 @@
-import React, {useEffect} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import UserInfo from '../UserInfo/UserInfo';
 import {useSelector, useDispatch} from 'react-redux'; 
-import { getCurrentProfile, loadUser } from '../../Redux/UserAction';
+import { getCurrentProfile} from '../../Redux/UserAction';
+import FormPost from '../Form/FormPost';
+import Spinner from './Spinner';
+
 
 
 
 
 const UserDashboard = () => {
+
     const dispatch=useDispatch();
-   // const profile=useSelector(state=>state.profileReducer);
-    //const auth=useSelector(state=>state.authReducer); 
-
     useEffect(()=>{
-        //dispatch(getCurrentProfile())
-        
-    },[])
+       dispatch(getCurrentProfile());
+    }, [dispatch])
 
-   
+    const  userInfo=useSelector(state=>state.profileReducer);
+    const auth=useSelector(state=>state.authReducer);
+
+    const {profile, loading}=userInfo;
+
+  
     return (
         <div>
-            UserDashboard
-            {/*<UserInfo/>*/}
+
+            <h3 style={{color:"#f60002", marginTop:"25px", marginLeft:"50px"}}> Bienvenu à votre UserDashboard </h3>
            
+         {  loading && profile===null? <Spinner/> :<Fragment> 
+           
+            <UserInfo userInfo={userInfo}/> 
+          
+           
+           </Fragment>}
            
         </div>
     );
