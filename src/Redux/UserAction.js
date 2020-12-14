@@ -1,6 +1,6 @@
 import axios from 'axios'; 
 import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, 
-    LOGIN_FAIL, LOGOUT, GET_PROFILE, PROFILE_ERROR} from './ActionTypes';
+    LOGIN_FAIL, LOGOUT, GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE} from './ActionTypes';
 import setAuthToken from '../Utils/setAuthToken';
 
 
@@ -106,8 +106,13 @@ export const  getUsers=()=>(dispatch)=>{
  export const logout=(x)=>async(dispatch)=>{
     
     await dispatch({
-        type:'LOGOUT'
+        type:CLEAR_PROFILE
     })
+   
+    await dispatch({
+        type:LOGOUT
+    })
+   
   console.log(x);
   }
   /****************************************** */

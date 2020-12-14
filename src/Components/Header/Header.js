@@ -17,9 +17,9 @@ function Header({setMotsCle}) {
   const {isAuthenticated, loading}=authState; 
   const dispatch=useDispatch();
 
- const authLink=<Button variant="danger" onClick={()=>dispatch(logout("au revoir"))}>Déconnexion
+ const authLink=<Link to="/"><Button variant="danger" onClick={()=>dispatch(logout("au revoir"))}>Déconnexion
                 <i className="fa fa-sign-out" aria-hidden="true" style={{marginLeft:"4px"}}></i>
-                </Button>;
+                </Button></Link>;
 
 const guestLink=<div>
                     <Link to="/user/inscription"><Button className="inscription" variant="success">S'inscrire</Button></Link>
@@ -38,16 +38,6 @@ const guestLink=<div>
 
       
      
-         {/*<Button variant="danger" onClick={dispatch(logout)}>Déconnexion
-                <i className="fa fa-sign-out" aria-hidden="true" style={{marginLeft:"4px"}}></i>
-            </Button>
-
-
-            <Link to="/user/inscription"> <Button className="inscription" variant="success">S'inscrire </Button> </Link>
-            
-            <Link to='/user/connexion'> <Button variant="success">Connexion 
-                <i className="fa fa-user" aria-hidden="true" style={{marginLeft:"4px"}}></i>
-  </Button> </Link>*/}
 
         </div>
        </div>

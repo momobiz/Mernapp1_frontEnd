@@ -1,17 +1,13 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect, Fragment} from 'react';
 import {Card, ListGroup, Button} from 'react-bootstrap';
 import {useSelector, useDispatch} from 'react-redux';
-
-import {Link} from 'react-router-dom';
-
-
-
+import FormPost from '../Form/FormPost';
 import './userInfo.css'; 
 
-const UserInfo = ({userInfo}) => {
+const UserInfo = ({profile}) => {
 
-
- const {_id, userName, phone, city, email, avatar, professionnal}=userInfo.profile;
+ const [creationAnnonce, setCreationAnnonce]=useState(false);
+ const {_id, userName, phone, city, email, avatar, professionnal}=profile;
    
 
 
@@ -33,11 +29,12 @@ const UserInfo = ({userInfo}) => {
             </ListGroup>
             </Card.Title>
             <Card.Body>
-               
+           <Button variant="success" onClick={()=>setCreationAnnonce(!creationAnnonce)}>Ajouter une annonce</Button>
             </Card.Body>
 
            
 </Card>
+        {creationAnnonce && <Fragment><FormPost/> </Fragment>}
             
 
             

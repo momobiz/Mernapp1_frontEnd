@@ -10,9 +10,16 @@ export const  getPosts=()=>(dispatch)=>{
 
 }
 export const createPost=(newPost)=>async(dispatch)=>{
-   await axios.post('/posts/createpost1', newPost)
+   await axios.post('/posts/createpost', newPost)
     .then(res=>dispatch(getPosts()))
     .catch(error=>console.log(error))
 
 }
+export const deletePost=(postId)=>async(dispatch)=>{
+    await axios.delete(`/deletepost/${postId}`)
+    .then(res=>dispatch(getPosts()))
+    .catch(error=>console.log(error))
+
+}
+
 
