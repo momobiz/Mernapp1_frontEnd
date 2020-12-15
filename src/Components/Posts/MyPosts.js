@@ -13,7 +13,8 @@ setNbAnnonce(posts.filter(post=>post.idUser===id).length);
     return (
         <ListGroup className="myPosts">
             <ListGroup.Item style={{fontWeight:"bold", textAlign:'center', color:"#f60002", fontStyle:"italic" }}> Ma liste d'annonces </ListGroup.Item>
-           {posts.filter(post=>post.idUser===id).map(post=> <MyPostsCard post={post}/>)}
+           {posts.filter(post=>post.idUser===id).map((post)=> <MyPostsCard post={post} 
+                                                                    key={post._id}/>)}
 
         </ListGroup>
     );

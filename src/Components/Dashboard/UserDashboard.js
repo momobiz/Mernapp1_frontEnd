@@ -7,6 +7,8 @@ import Spinner from './Spinner';
 import {Card, Button, ListGroup} from 'react-bootstrap';
 import './userDashboard.css';
 import MyPosts from '../Posts/MyPosts';
+import FormPostUpdate from '../Form/FormPostUpdate'
+import ListPostAdmin from './ListPostAdmin';
 
 
 const UserDashboard = () => {
@@ -21,16 +23,12 @@ const UserDashboard = () => {
     const [creationAnnonce, setCreationAnnonce]=useState(false);
     const [voirAnnonces, setVoirAnnonces]=useState(false);
     const [nbAnnonce, setNbAnnonce]=useState(0); 
-   
+    const ListPost=useSelector(state=>state.postReducer); 
   
- 
-    
+   console.log('posts=>', ListPost)
     const {profile, loading}=profileInfo;
 
-        
-     
-        
-  
+    
     return (
         <div>
 
@@ -38,7 +36,7 @@ const UserDashboard = () => {
            
          {  (loading && profile===null)? (<Spinner/> ):(<Fragment>
 
-       {console.log(profile)}
+            
              
             <Card style={{ width: '40rem', marginLeft:"20px" }} className="userDescription">
 
@@ -49,25 +47,35 @@ const UserDashboard = () => {
             <ListGroup.Item> <span className="userTitle"> Email : </span>{profile && profile.email}  </ListGroup.Item>
             <ListGroup.Item> <span className="userTitle"> Phone : </span> {profile && profile.phone} </ListGroup.Item>
             <ListGroup.Item> <span className="userTitle"> City : </span>{profile && profile.city} </ListGroup.Item>
+    { (profile && profile.userName!=='admin') && 
             <ListGroup.Item> <span className="userTitle"> Professionnel : </span>{(profile && profile.professionnal)? 'Oui ':' Non'}  </ListGroup.Item>
+     }{ (profile && profile.userName!=='admin') && 
             <ListGroup.Item> <span className="userTitle"> Nombre d'annonces : </span> {profile&&nbAnnonce} </ListGroup.Item>
+    }   
             </ListGroup>
             </Card.Title>
+{(profile && profile.userName!=='admin') && 
             <Card.Body>
-           <Button variant="success" onClick={()=>setCreationAnnonce(!creationAnnonce)}>Ajouter une annonce</Button>
-           <Button variant="success" onClick={()=>setVoirAnnonces(!voirAnnonces)} style={{marginLeft:"10px"}}>Mes annonces</Button>
-            </Card.Body>
-
+                <Button variant="success" onClick={()=>setCreationAnnonce(!creationAnnonce)}>Ajouter une annonce</Button>
+                <Button variant="success" onClick={()=>setVoirAnnonces(!voirAnnonces)} style={{marginLeft:"10px"}}>Mes annonces</Button>
+           </Card.Body>
+}
            
 </Card>
-            {console.log(voirAnnonces)}
+         
             {creationAnnonce && <div className="creationAnnonce"> <FormPost/> </div>}
             {voirAnnonces && <div> <MyPosts profile={profile}  setNbAnnonce={ setNbAnnonce} /></div>}
+     
 
+{(profile && profile.userName==='admin') &&  <ListGroup className="listPostAdmin">
+     <ListGroup.Item className="listeAnnonces">Listes de toutes les Annonces </ListGroup.Item>
+     { ListPost.map(post=><ListPostAdmin post={post} key={post._id}/>) }
+     </ListGroup> }
 
-         
+       
 
            </Fragment>)}
+           
            
         </div>
     );

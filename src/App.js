@@ -21,10 +21,10 @@ import PrivateRoute from './Components/Routing/PrivateRoute';
 
 
 if(localStorage.token) {setAuthToken(localStorage.token);
-                        console.log('token dans le localStorage App')
+                       
  
 }; 
-console.log('App', localStorage.getItem('token'))
+
 
 function App() {
 
@@ -43,8 +43,8 @@ function App() {
   const [motsCle, setMotsCle]=useState(''); 
   
 
-  //const users=useSelector(state=>state.userReducer);
- //console.log('users=>', users);
+  const users=useSelector(state=>state.userReducer);
+ console.log('users=>', users);
 
  
 
@@ -56,10 +56,6 @@ function App() {
      
       <Header setMotsCle={setMotsCle}/>
     
-  
-
-     
-   
    <Switch>
       <Route exact path="/" render={()=><Posts motsCle={motsCle} />}/>
      <Route exact path="/:categorie" render={({match})=><Posts  motsCle={motsCle} match={match}/>}/>
@@ -83,27 +79,11 @@ function App() {
      <PrivateRoute exact path="/user/dashboard" component={UserDashboard}/>
   
 
-     
-     
-  
-    
   </Switch>
-
-    {/*<FormPost/>*/}
    <Footer/>
 
    
 
-
-
-
-   
-   
-   
-
-
-    
-      
    
     </div>
   );

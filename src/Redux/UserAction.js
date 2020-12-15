@@ -87,7 +87,7 @@ export const  getUsers=()=>(dispatch)=>{
      await axios.post('http://localhost:5000/users/createuser', newUser, config)
      .then(res=>{const token=res.data
        
-                Storage.setItem('token', token)
+                localStorage.setItem('token', token)
                
               dispatch({type:REGISTER_SUCCESS, payload:res.data})
               dispatch(loadUser())
