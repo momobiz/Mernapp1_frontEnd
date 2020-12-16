@@ -11,6 +11,8 @@ const dispatch=useDispatch();
 const [updateAnnonce, setUpdateAnnonce]=useState(false);
 console.log(updateAnnonce)
 
+
+
     const style={
         display:"flex",
         alignItems: "center",
@@ -21,7 +23,7 @@ console.log(updateAnnonce)
          
             <ListGroup.Item style={{width:"39.9rem"} }>
             <div style={style}>
-            {post.title} 
+            <img src={"http://localhost:5000/"+post.photo} alt="picproduit" width="70px"/>
             <Button variant="success" style={{marginLeft:"55%"}} onClick={()=>setUpdateAnnonce(!updateAnnonce)}>Editer </Button> 
             <Button variant="danger"  style={{marginLeft:"10px"}} onClick={()=>dispatch(deletePost(post._id))}>Supprimer </Button> 
             </div>

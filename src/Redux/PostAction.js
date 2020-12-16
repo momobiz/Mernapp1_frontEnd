@@ -17,7 +17,8 @@ export const createPost=(newPost)=>async(dispatch)=>{
 }
 export const deletePost=(postId)=>async(dispatch)=>{
     await axios.delete(`/posts/deletepost/${postId}`)
-    .then(res=>dispatch({type:"DELETE_POST", payload:postId}))
+    //.then(res=>dispatch({type:"DELETE_POST", payload:postId}))
+    .then(res=>dispatch(getPosts()))
     .catch(error=>console.log(error))
 
 }

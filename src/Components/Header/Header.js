@@ -17,9 +17,14 @@ function Header({setMotsCle}) {
   const {isAuthenticated, loading}=authState; 
   const dispatch=useDispatch();
 
- const authLink=<Link to="/"><Button variant="danger" onClick={()=>dispatch(logout("au revoir"))}>Déconnexion
+ const authLink=<div>
+              
+                <Link to="/user/dashboard"><Button variant="success" style={{marginRight:"7px"}}> Dashboard
+                </Button></Link>
+                 <Link to="/"><Button variant="danger" onClick={()=>dispatch(logout("au revoir"))}>Déconnexion
                 <i className="fa fa-sign-out" aria-hidden="true" style={{marginLeft:"4px"}}></i>
-                </Button></Link>;
+               </Button></Link>
+                </div>
 
 const guestLink=<div>
                     <Link to="/user/inscription"><Button className="inscription" variant="success">S'inscrire</Button></Link>

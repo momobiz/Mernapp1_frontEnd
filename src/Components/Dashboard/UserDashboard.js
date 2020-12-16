@@ -56,8 +56,10 @@ const UserDashboard = () => {
             </Card.Title>
 {(profile && profile.userName!=='admin') && 
             <Card.Body>
-                <Button variant="success" onClick={()=>setCreationAnnonce(!creationAnnonce)}>Ajouter une annonce</Button>
-                <Button variant="success" onClick={()=>setVoirAnnonces(!voirAnnonces)} style={{marginLeft:"10px"}}>Mes annonces</Button>
+                <Button variant="success" onClick={()=>{setCreationAnnonce(!creationAnnonce);
+                                                       voirAnnonces && setVoirAnnonces(!voirAnnonces)}}>Ajouter une annonce</Button>
+                <Button variant="success" onClick={()=>{setVoirAnnonces(!voirAnnonces);
+                                                        creationAnnonce && setCreationAnnonce(!creationAnnonce)}} style={{marginLeft:"10px"}}>Mes annonces</Button>
            </Card.Body>
 }
            
@@ -68,7 +70,7 @@ const UserDashboard = () => {
      
 
 {(profile && profile.userName==='admin') &&  <ListGroup className="listPostAdmin">
-     <ListGroup.Item className="listeAnnonces">Listes de toutes les Annonces </ListGroup.Item>
+     <ListGroup.Item className="titreListAdmin">Listes de toutes les Annonces </ListGroup.Item>
      { ListPost.map(post=><ListPostAdmin post={post} key={post._id}/>) }
      </ListGroup> }
 

@@ -6,7 +6,7 @@ const postReducer=(posts=[], action)=>{
         case 'FETCH_ALL_POSTS':
             return action.payload;
         case 'DELETE_POST':
-            return [...posts, posts.filter(post=>post._id!==action.payload)];
+            return [...posts, posts.filter(post=>post._id && post._id!==action.payload)];
       
         case 'CREATE_POST':
              return [...posts, action.payload];

@@ -8,10 +8,10 @@ const Navbarb = ({setMotsCle}) => {
         <Navbar  bg="link" variant="link" className="navbarb" >
                  
           <Nav className=" menu">
-                   <Link to="/"> <Button variant="success" onClick={()=>setMotsCle('')}>Accueil</Button></Link>
+                   <Link to="/"> <Button className="fondBouton" variant="success" onClick={()=>setMotsCle('')}>Accueil</Button></Link>
             
                     <Dropdown>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    <Dropdown.Toggle className="fondBouton" variant="success" id="dropdown-basic">
                         Plantes
                     </Dropdown.Toggle>
 
@@ -25,7 +25,7 @@ const Navbarb = ({setMotsCle}) => {
                     </Dropdown>
 
                     <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        <Dropdown.Toggle className="fondBouton" variant="success" id="dropdown-basic">
                             Outillages
                         </Dropdown.Toggle>
 
@@ -36,7 +36,7 @@ const Navbarb = ({setMotsCle}) => {
                         </Dropdown.Menu>
                     </Dropdown>
                     <Dropdown>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    <Dropdown.Toggle className="fondBouton" variant="success" id="dropdown-basic">
                         Entretien Jardin
                         </Dropdown.Toggle>
 
@@ -48,7 +48,7 @@ const Navbarb = ({setMotsCle}) => {
                     </Dropdown>
 
                     <Dropdown>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    <Dropdown.Toggle className="fondBouton" variant="success" id="dropdown-basic">
                         Mobilier jardin
                     </Dropdown.Toggle>
 
@@ -60,14 +60,14 @@ const Navbarb = ({setMotsCle}) => {
                     </Dropdown>
 
                     <Dropdown>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    <Dropdown.Toggle className="fondBouton" variant="success" id="dropdown-basic">
                         Articles de décorations
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu className="sousMenu">
                         <Dropdown.Item className="menuItem"><Link className="menuItem1" to="/pots_et_bacs"> Pots et bacs</Link></Dropdown.Item>
                         <Dropdown.Item className="menuItem"><Link className="menuItem1" to="/balustrades_fontaines_et_autres"> Balustrades Fontaines et autres </Link></Dropdown.Item>
-                        <Dropdown.Item className="menuItem"><Link className="menuItem1" to="/eclairages">Eclairages</Link></Dropdown.Item>
+                        <Dropdown.Item className="menuItem"><Link className="menuItem1" to="/eclairage">Eclairages</Link></Dropdown.Item>
                         <Dropdown.Item className="menuItem"><Link className="menuItem1" to="/accessoires_divers">Accessoires divers</Link> </Dropdown.Item>
                     </Dropdown.Menu>
                     </Dropdown>

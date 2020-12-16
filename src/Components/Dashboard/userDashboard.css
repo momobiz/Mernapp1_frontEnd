@@ -37,9 +37,10 @@ margin-left: 45%;
     margin-top: -20%;
     border:double 2px #28a745;
 }
-.listeAnnonces{
-    color:"#f60002";
-    text-align:"center";
-     font-weight:"bold";
-      font-size:"2rem"
+.titreListAdmin{
+    color:#f60002;
+    text-align:center;
+     font-weight:bold;
+      font-size:1.5rem;
+      font-style:italic
 }

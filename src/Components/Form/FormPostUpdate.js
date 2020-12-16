@@ -27,18 +27,20 @@ const FormPostUpdate = ({post}) => {
     }
 
     return (
-        <div>
-             <Modal.Dialog >
+        <div style={{display:"flex"}}>
+             <Modal.Dialog style={{border:"2px #28a745 solid"}}>
                   
 
                     <Modal.Body>
                     <Form onSubmit={handleSubmit}>
                             
+                    
 
                             <Form.Group controlId="exampleForm.ControlTextarea1">
                                 <Form.Control as="textarea" placeholder="Description" name="description"
                                  value={postData.description} onChange={(e)=>setPostData({...postData, description:e.target.value})}/>  
                             </Form.Group>
+                            
 
                             <Form.Group>
                                     <Form.Row>
@@ -68,8 +70,43 @@ const FormPostUpdate = ({post}) => {
                     </Modal.Body>
 
                    
-            </Modal.Dialog>
+            </Modal.Dialog >
+         
+            <Modal.Dialog  style={{marginLeft:"5px", border:"2px red solid", borderRadius:"30"}}>
+                  
+
+                  <Modal.Body>
+                  
+                          
+
+                          <Form.Group controlId="exampleForm.ControlTextarea1">
+                              <Form.Control as="textarea" placeholder="Description" name="description" readOnly
+                             value={post.description} />  
+                          </Form.Group>
+
+                          <Form.Group>
+                                  <Form.Row>
+                                     <Form.Control size="lg" type="text" placeholder="prix" name="price" readOnly
+                                     value={post.price}  />
+                                  </Form.Row>
+                         </Form.Group>
+
+                         <Form.Group>
+                                  <Form.Row>
+                                     <Form.Control size="lg" type="text" placeholder="Téléphone" name="phone" readOnly
+                                     value={post.phone}  />
+                                  </Form.Row>
+                         </Form.Group>
+
+                  
+                        
             
+                      
+                      
+                  </Modal.Body>
+
+                 
+          </Modal.Dialog>
         </div>
     );
 }

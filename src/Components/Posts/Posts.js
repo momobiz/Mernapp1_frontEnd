@@ -17,11 +17,11 @@ const Posts = ({motsCle, match}) => {
 
         <div className="postsContainer">
            
-           { !match? (postsList.filter(post=>(post.title.toLowerCase().includes(motsCle.toLowerCase()) ))
+           { !match? (postsList.filter(post=>(post.title && post.title.toLowerCase().includes(motsCle.toLowerCase()) ))
            .map((post, key)=><Post post={post} key={key}/>))
            :
 
-           ( postsList.filter(post=>(post.category===match.params.categorie)).map((post, key)=><Post post={post}/>))
+           ( postsList.filter(post=>(post.category===match.params.categorie)).map((post, key)=><Post post={post} key={key}/>))
 
            
 
